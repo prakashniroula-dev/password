@@ -9,7 +9,8 @@ const btn_generate = $id("btn_generate")
 
 const output_pass = $id("output_pass")
 const btn_copy_output = $id("btn_copy_output")
-
+const btn_show_output = $id("btn_show_output")
+const btn_show_appname = $id("btn_show_appname")
 
 btn_copy_output.addEventListener('click', async function (e) {
   e.preventDefault()
@@ -25,9 +26,21 @@ btn_show_masterpass.addEventListener('click', async function (e) {
   btn_show_masterpass.textContent = hidden ? "Hide" : "Show"
 })
 
+btn_show_output.addEventListener('click', async function (e) {
+  e.preventDefault()
+  const hidden = output_pass.type === "password"
+  output_pass.type = hidden ? "text" : "password"
+  btn_show_output.textContent = hidden ? "Hide" : "Show"
+})
 
-btn_generate.addEventListener('click', async function (e) {
+btn_show_appname.addEventListener('click', async function (e) {
+  e.preventDefault()
+  const hidden = input_appname.type === "password"
+  input_appname.type = hidden ? "text": "password"
+  btn_show_appname.textContent = hidden ? "Hide": "Show"
+})
 
+async function generatePassword() {
   const masterpass = input_masterpass.value;
   let appname = input_appname.value;
   let length = input_length.value;
@@ -35,13 +48,7 @@ btn_generate.addEventListener('click', async function (e) {
   if (!validateInput()) {
     return
   }
-
-  // if shown password, hide it
-  if ( input_masterpass.type === "text" ) {
-    btn_show_masterpass.click();
-  }
   
-  e.preventDefault()
   
   // subtract
   length -= 3;
@@ -58,24 +65,26 @@ btn_generate.addEventListener('click', async function (e) {
   pass = pass.replace(/[A-Za-z]/, c => c.toUpperCase())
 
   output_pass.value = pass;
-})
+  output_pass.type = "password"
+  btn_show_output.textContent = "Show"
+}
 
 // change per input
 input_appname.addEventListener('input', () => {
   if ( validateInput() ) {
-    btn_generate.click()
+    generatePassword()
   }
 })
 
 input_masterpass.addEventListener('input', () => {
   if ( validateInput() ) {
-    btn_generate.click()
+    generatePassword()
   }
 })
 
 input_length.addEventListener('input', () => {
   if ( validateInput() ) {
-    btn_generate.click()
+    generatePassword()
   }
 })
 

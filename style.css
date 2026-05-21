@@ -35,6 +35,10 @@ button[type="button"] {
   border-radius: 2rem;
 }
 
+.container {
+  padding: 0.5rem 0;
+}
+
 @keyframes appear {
   0% {
     opacity: 0;

@@ -11,17 +11,21 @@
 </head>
 
 <body>
-
   <header class="container">
     <hgroup>
       <h1>Password Generator</h1>
-      <p>A custom password generator by @planeboom911</p>
+      <p>
+        A custom password generator by @planeboom911.
+        <br>
+        Keeping all parameters the same will generate same password,
+        however even slight changes completely change the output
+      </p>
     </hgroup>
   </header>
 
   <main class="container">
     <section>
-      <h3>Details</h3>
+      <h3>Input</h3>
       <form>
         <div class="grid bottom">
           <div class="span_3">
@@ -33,23 +37,27 @@
 
         <div class="grid bottom">
           <div class="span_2">
-            <label for="input_appname">Website / App name</label>
-            <input type="text" id="input_appname" placeholder="Application name..." required />
+            <label for="input_appname">Website / App name phrase</label>
+            <input type="password" id="input_appname" placeholder="Application name..." required />
           </div>
+          <button id="btn_show_appname" type="button">Show</button>
           <div>
             <label for="input_length">Length</label>
             <input type="number" id="input_length" placeholder="Length" min="8" max="64" required />
           </div>
-          <button type="submit" id="btn_generate">Generate</button>
         </div>
       </form>
     </section>
-
+    
     <section>
-      <h3>Password</h3>
-      <div class="grid">
-        <input class="span_3" type="text" id="output_pass" readonly>
+      <h3>Output</h3>
+      <div class="grid bottom">
+        <div class="span_3">
+          <label>Password</label>
+          <input type="password" id="output_pass" readonly>
+        </div>
         <button type="button" id="btn_copy_output">Copy</button>
+        <button type="button" id="btn_show_output">Show</button>
       </div>
     </section>
   </main>
